@@ -218,11 +218,6 @@ I ran it on WSL2 (Ubuntu 22.04) on a laptop with an i5-12500H, Gazebo server onl
   after ROS had already shut down. It only happens after the laps are done (you can see it at the end
   of `results/fusion_floor.log`), but it's fixed now.
 
-## Next
-
-Adding a 2D lidar and doing SLAM + Nav2 on the same robot, which is the first thing that can
-actually correct the distance error the gyro can't.
-
 ## License
 
 MIT
