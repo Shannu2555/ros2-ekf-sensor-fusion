@@ -1,0 +1,44 @@
+[INFO] [launch]: All log files can be found below /home/shanmukh/.ros/log/2026-10-24-13-40-24-490575-DESKTOP-FHS3URB-642
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [wheel_odometry_node-1]: process started with pid [645]
+[INFO] [imu_relay_node-2]: process started with pid [647]
+[INFO] [ekf_node-3]: process started with pid [649]
+[INFO] [ekf_node-4]: process started with pid [651]
+[INFO] [route_driver_node-5]: process started with pid [653]
+[INFO] [logger_node-6]: process started with pid [655]
+[INFO] [static_transform_publisher-7]: process started with pid [657]
+[INFO] [path_viz_node-8]: process started with pid [659]
+[static_transform_publisher-7] [INFO] [1792829427.121580899] [world_to_odom]: Spinning until stopped - publishing transform
+[static_transform_publisher-7] translation: ('0.000000', '0.000000', '0.000000')
+[static_transform_publisher-7] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-7] from 'world' to 'odom'
+[logger_node-6] [INFO] [1792829433.587325257] [fusion_logger]: logging to /home/shanmukh/fusion_rviz/slippery_rviz.csv
+[route_driver_node-5] [INFO] [1792829437.161927358] [route_driver]: all estimators up, starting in 12 s
+[route_driver_node-5] [INFO] [1792829468.403789843] [route_driver]: route 10% done
+[route_driver_node-5] [INFO] [1792829486.866222320] [route_driver]: route 20% done
+[route_driver_node-5] [INFO] [1792829505.576330681] [route_driver]: route 30% done
+[route_driver_node-5] [INFO] [1792829524.116032140] [route_driver]: route 40% done
+[route_driver_node-5] [INFO] [1792829542.753299334] [route_driver]: route 50% done
+[route_driver_node-5] [INFO] [1792829561.159340899] [route_driver]: route 60% done
+[route_driver_node-5] [INFO] [1792829579.925739100] [route_driver]: route 70% done
+[route_driver_node-5] [INFO] [1792829598.410064811] [route_driver]: route 80% done
+[route_driver_node-5] [INFO] [1792829617.167967927] [route_driver]: route 90% done
+[logger_node-6] [INFO] [1792829637.385320552] [fusion_logger]: route done after 195.6 s
+[INFO] [logger_node-6]: process has finished cleanly [pid 655]
+[INFO] [path_viz_node-8]: sending signal 'SIGINT' to process[path_viz_node-8]
+[INFO] [static_transform_publisher-7]: sending signal 'SIGINT' to process[static_transform_publisher-7]
+[INFO] [route_driver_node-5]: sending signal 'SIGINT' to process[route_driver_node-5]
+[INFO] [ekf_node-4]: sending signal 'SIGINT' to process[ekf_node-4]
+[INFO] [ekf_node-3]: sending signal 'SIGINT' to process[ekf_node-3]
+[INFO] [imu_relay_node-2]: sending signal 'SIGINT' to process[imu_relay_node-2]
+[INFO] [wheel_odometry_node-1]: sending signal 'SIGINT' to process[wheel_odometry_node-1]
+[static_transform_publisher-7] [INFO] [1792829638.421543140] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ekf_node-4] [INFO] [1792829638.481922939] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ekf_node-3] [INFO] [1792829638.483702471] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[INFO] [static_transform_publisher-7]: process has finished cleanly [pid 657]
+[INFO] [ekf_node-4]: process has finished cleanly [pid 651]
+[INFO] [ekf_node-3]: process has finished cleanly [pid 649]
+[INFO] [path_viz_node-8]: process has finished cleanly [pid 659]
+[INFO] [wheel_odometry_node-1]: process has finished cleanly [pid 645]
+[INFO] [route_driver_node-5]: process has finished cleanly [pid 653]
+[INFO] [imu_relay_node-2]: process has finished cleanly [pid 647]

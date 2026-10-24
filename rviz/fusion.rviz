@@ -1,49 +1,64 @@
 Panels:
   - Class: rviz_common/Displays
+    Help Height: 0
     Name: Displays
+    Property Tree Widget:
+      Expanded: ~
+      Splitter Ratio: 0.6
+    Tree Height: 600
 Visualization Manager:
   Class: ""
   Displays:
     - Class: rviz_default_plugins/Grid
-      Name: Grid
+      Name: Grid (0.5 m)
       Enabled: true
       Reference Frame: world
-      Plane Cell Count: 14
+      Plane Cell Count: 30
       Cell Size: 0.5
-      Color: 200; 200; 200
-    - Class: rviz_default_plugins/RobotModel
-      Name: Robot (EKF pose)
+      Offset:
+        X: 0.25
+        Y: 2.75
+        Z: 0
+      Color: 110; 110; 110
+      Alpha: 0.6
+    - Class: rviz_default_plugins/Marker
+      Name: Icy patch
       Enabled: true
-      Description Source: Topic
-      Description Topic:
-        Value: /robot_description
+      Topic:
+        Value: /viz/icy_patch
     - Class: rviz_default_plugins/Path
       Name: Ground truth
       Enabled: true
       Topic:
         Value: /viz/path/ground_truth
-      Color: 30; 30; 30
+      Color: 235; 235; 235
       Line Style: Billboards
-      Line Width: 0.03
+      Line Width: 0.035
     - Class: rviz_default_plugins/Path
       Name: Wheel odometry
       Enabled: true
       Topic:
         Value: /viz/path/wheel
-      Color: 214; 39; 40
+      Color: 235; 70; 60
       Line Style: Billboards
-      Line Width: 0.03
+      Line Width: 0.035
     - Class: rviz_default_plugins/Path
-      Name: EKF wheels + IMU
+      Name: EKF (wheels + IMU)
       Enabled: true
       Topic:
         Value: /viz/path/fused
-      Color: 31; 119; 180
+      Color: 70; 170; 255
       Line Style: Billboards
-      Line Width: 0.03
+      Line Width: 0.035
+    - Class: rviz_default_plugins/RobotModel
+      Name: Robot at EKF pose
+      Enabled: true
+      Description Source: Topic
+      Description Topic:
+        Value: /robot_description
   Enabled: true
   Global Options:
-    Background Color: 255; 255; 255
+    Background Color: 48; 48; 48
     Fixed Frame: world
     Frame Rate: 30
   Name: root
@@ -54,11 +69,14 @@ Visualization Manager:
     Current:
       Class: rviz_default_plugins/TopDownOrtho
       Name: Current View
-      Scale: 70
-      X: 0.0
-      Y: 1.5
+      Scale: 92
+      X: 0.3
+      Y: 2.8
     Saved: ~
 Window Geometry:
-  Height: 820
-  Width: 1100
-  Hide Left Dock: true
+  Displays:
+    collapsed: false
+  Height: 860
+  Width: 1280
+  Hide Left Dock: false
+  Hide Right Dock: true

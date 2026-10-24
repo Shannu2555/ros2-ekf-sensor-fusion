@@ -5,11 +5,12 @@ actually helps against plain wheel odometry. Same diff-drive robot as my
 [MPC project](https://github.com/Shannu2555/ros2-nmpc-diffdrive), now with an IMU, running in
 ROS 2 Humble + Gazebo Fortress.
 
-![replay of the icy-corner run](docs/media/slippery_replay.gif)
+![RViz during the icy-corner run](docs/media/rviz_icy_corner_run.gif)
 
-*Replay of a real logged run: black is where the robot actually was (Gazebo ground truth), red is
-where its wheel odometry thought it was, blue is the EKF with wheels + IMU. The light blue square
-is an icy patch on one corner.*
+*RViz during a live Gazebo run, sped up 8x. White = where the robot actually was (Gazebo ground
+truth), red = where its wheel odometry thought it was, blue = the EKF with wheels + IMU, the box
+is the robot drawn at the EKF pose. The light square is an icy patch on one corner. This run's CSV
+and logs are in `results/rviz_recording/` (5.96 m vs 0.42 m after 5 laps).*
 
 ## Why I did this
 
@@ -50,6 +51,10 @@ Full table with max errors in [`results/metrics.md`](results/metrics.md).
 So the gyro cut the final error about 5x on the normal floor and about 10x with the icy corner.
 "EKF, wheels only" lands on top of the raw odometry every time, which is the point of running it:
 the improvement comes from the gyro, not from putting the data through a Kalman filter.
+
+![replay of the icy-corner run](docs/media/slippery_replay.gif)
+
+*Same kind of run, replayed from the CSV behind the table (`tools/animate.py`).*
 
 ![normal floor](docs/media/floor.png)
 ![icy corner](docs/media/slippery.png)
@@ -176,7 +181,7 @@ cd ~/ws && colcon build --symlink-install && source install/setup.bash
 # terminal 1 (world:=floor or world:=slippery, rviz:=true to watch)
 ros2 launch ekf_fusion sim.launch.py world:=slippery rviz:=true
 # terminal 2
-ros2 launch ekf_fusion fusion.launch.py tag:=slippery calibration:=measured viz:=true out_dir:=$HOME/fusion_logs
+ros2 launch ekf_fusion fusion.launch.py tag:=slippery calibration:=measured viz:=true icy_patch:=true out_dir:=$HOME/fusion_logs
 ```
 
 Restart the sim between runs, the robot has to start from the origin. Or run everything headless,

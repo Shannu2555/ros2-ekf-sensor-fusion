@@ -39,7 +39,8 @@ def nodes(context):
         Node(package="robot_localization", executable="ekf_node", name="ekf_wheel_only", output="screen",
              parameters=[cfg("ekf_wheel_only.yaml")], remappings=[("odometry/filtered", "odometry/wheel_only")]),
         Node(package="ekf_fusion", executable="route_driver_node", name="route_driver",
-             output="screen", parameters=[cfg("fusion.yaml")]),
+             output="screen", parameters=[cfg("fusion.yaml"),
+                                          {"settle_time": float(LaunchConfiguration("settle_time").perform(context))}]),
         logger,
         # RViz trails only (viz:=true). Ground truth is in "world", the estimates in "odom"; both
         # start at the same spot, so an identity transform between them is exact.
@@ -47,7 +48,9 @@ def nodes(context):
              arguments=["--frame-id", "world", "--child-frame-id", "odom"],
              condition=IfCondition(LaunchConfiguration("viz"))),
         Node(package="ekf_fusion", executable="path_viz_node", name="path_viz",
-             parameters=[{"use_sim_time": True}], condition=IfCondition(LaunchConfiguration("viz"))),
+             parameters=[{"use_sim_time": True,
+                          "icy_patch": LaunchConfiguration("icy_patch").perform(context) == "true"}],
+             condition=IfCondition(LaunchConfiguration("viz"))),
         # the logger exits when the laps are done -> stop everything
         RegisterEventHandler(OnProcessExit(target_action=logger, on_exit=[EmitEvent(event=Shutdown())])),
     ]
@@ -59,5 +62,7 @@ def generate_launch_description():
         DeclareLaunchArgument("calibration", default_value="measured", choices=list(CALIBRATION)),
         DeclareLaunchArgument("out_dir", default_value="/tmp/fusion_logs"),
         DeclareLaunchArgument("viz", default_value="false"),
+        DeclareLaunchArgument("icy_patch", default_value="false"),      # draw the patch in RViz
+        DeclareLaunchArgument("settle_time", default_value="3.0"),      # wait before driving off [s]
         OpaqueFunction(function=nodes),
     ])
