@@ -1,0 +1,30 @@
+# Wheel radii and track width come from the launch file (calibration:=exact | measured).
+wheel_odometry:
+  ros__parameters:
+    use_sim_time: true
+    ticks_per_rev: 2048
+    twist_var_vx: 0.0004           # (0.02 m/s)^2
+    twist_var_wz: 0.01             # (0.1 rad/s)^2: wheel yaw rate is the least trustworthy thing here
+
+imu_relay:
+  ros__parameters:
+    use_sim_time: true
+    frame_id: imu_link
+    gyro_stddev: 0.009             # same as the noise configured in the URDF
+    accel_stddev: 0.02
+
+route_driver:
+  ros__parameters:
+    use_sim_time: true
+    side: 3.0
+    corner_radius: 0.6
+    laps: 5
+    speed: 0.3
+    lookahead: 0.35
+    w_max: 1.2
+    settle_time: 3.0
+
+fusion_logger:
+  ros__parameters:
+    use_sim_time: true
+    timeout: 900.0

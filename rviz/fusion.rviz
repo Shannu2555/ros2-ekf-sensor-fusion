@@ -1,0 +1,64 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Name: Grid
+      Enabled: true
+      Reference Frame: world
+      Plane Cell Count: 14
+      Cell Size: 0.5
+      Color: 200; 200; 200
+    - Class: rviz_default_plugins/RobotModel
+      Name: Robot (EKF pose)
+      Enabled: true
+      Description Source: Topic
+      Description Topic:
+        Value: /robot_description
+    - Class: rviz_default_plugins/Path
+      Name: Ground truth
+      Enabled: true
+      Topic:
+        Value: /viz/path/ground_truth
+      Color: 30; 30; 30
+      Line Style: Billboards
+      Line Width: 0.03
+    - Class: rviz_default_plugins/Path
+      Name: Wheel odometry
+      Enabled: true
+      Topic:
+        Value: /viz/path/wheel
+      Color: 214; 39; 40
+      Line Style: Billboards
+      Line Width: 0.03
+    - Class: rviz_default_plugins/Path
+      Name: EKF wheels + IMU
+      Enabled: true
+      Topic:
+        Value: /viz/path/fused
+      Color: 31; 119; 180
+      Line Style: Billboards
+      Line Width: 0.03
+  Enabled: true
+  Global Options:
+    Background Color: 255; 255; 255
+    Fixed Frame: world
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz_default_plugins/MoveCamera
+  Value: true
+  Views:
+    Current:
+      Class: rviz_default_plugins/TopDownOrtho
+      Name: Current View
+      Scale: 70
+      X: 0.0
+      Y: 1.5
+    Saved: ~
+Window Geometry:
+  Height: 820
+  Width: 1100
+  Hide Left Dock: true

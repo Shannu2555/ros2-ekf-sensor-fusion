@@ -1,0 +1,38 @@
+# robot_localization EKF: wheel odometry + IMU gyro. This one owns odom -> base_link.
+ekf_fused:
+  ros__parameters:
+    use_sim_time: true
+    frequency: 50.0
+    sensor_timeout: 0.1
+    two_d_mode: true
+    publish_tf: true
+    map_frame: map
+    odom_frame: odom
+    base_link_frame: base_link
+    world_frame: odom
+
+    # wheels: forward speed only. The gyro owns the turn rate.
+    # attempt 1 also fed the wheel yaw rate in; on the icy patch the spinning wheels still pulled the
+    # heading ~3 deg per pass. attempt 2 kept it and added odom0_twist_rejection_threshold: 3.0,
+    # which also threw away good speed readings whenever the robot sped up (floor error 0.14 -> 1.06 m).
+    # Both runs are kept in results/attempt*.
+    odom0: /wheel/odom
+    odom0_config: [false, false, false,
+                   false, false, false,
+                   true,  false, false,
+                   false, false, false,
+                   false, false, false]
+    odom0_differential: false
+    odom0_queue_size: 10
+
+    # IMU: only the gyro's yaw rate. Gazebo also gives a perfect orientation, but a cheap IMU
+    # without a magnetometer can't, so using it would be cheating.
+    imu0: /imu/data
+    imu0_config: [false, false, false,
+                  false, false, false,
+                  false, false, false,
+                  false, false, true,
+                  false, false, false]
+    imu0_differential: false
+    imu0_queue_size: 20
+    imu0_remove_gravitational_acceleration: true
