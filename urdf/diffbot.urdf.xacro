@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<!-- Same diffbot as ros2-nmpc-diffdrive, now with an IMU and a ground-truth pose publisher.
+     Gazebo Fortress (the Gazebo that pairs with ROS 2 Humble). -->
+<robot name="diffbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:property name="wheel_r" value="0.05"/>
+  <xacro:property name="wheel_sep" value="0.30"/>
+  <xacro:property name="wheel_w" value="0.03"/>
+  <!-- MEMS-class gyro (MPU-6050 ballpark): white noise at 100 Hz plus a small leftover bias
+       after the usual "keep still at startup" calibration -->
+  <xacro:property name="gyro_std" value="0.009"/>
+  <xacro:property name="gyro_bias" value="0.0005"/>
+  <xacro:property name="acc_std" value="0.02"/>
+
+  <xacro:macro name="box_inertia" params="m x y z">
+    <inertia ixx="${m*(y*y+z*z)/12}" iyy="${m*(x*x+z*z)/12}" izz="${m*(x*x+y*y)/12}"
+             ixy="0" ixz="0" iyz="0"/>
+  </xacro:macro>
+
+  <!-- Same body as before, but base_link now sits on the wheel axle (chassis 8 cm behind it).
+       Wheel odometry measures the axle point, so ground truth has to report that same point,
+       otherwise every turn shows a fake ~10 cm "error" that is just the lever arm. -->
+  <xacro:property name="body_x" value="-0.08"/>
+  <link name="base_link">
+    <visual><origin xyz="${body_x} 0 0"/><geometry><box size="0.35 0.25 0.08"/></geometry>
+      <material name="blue"><color rgba="0.1 0.3 0.8 1"/></material></visual>
+    <collision><origin xyz="${body_x} 0 0"/><geometry><box size="0.35 0.25 0.08"/></geometry></collision>
+    <inertial><origin xyz="${body_x} 0 0"/><mass value="3.0"/>
+      <xacro:box_inertia m="3.0" x="0.35" y="0.25" z="0.08"/></inertial>
+  </link>
+
+  <xacro:macro name="wheel" params="side y">
+    <link name="${side}_wheel">
+      <visual><origin rpy="${pi/2} 0 0"/><geometry><cylinder radius="${wheel_r}" length="${wheel_w}"/></geometry></visual>
+      <!-- sphere collision: one clean contact point. With a cylinder, Gazebo's contact model made
+           the wheels scrub in every turn and the odometry lost ~35 deg of heading per lap. -->
+      <collision><geometry><sphere radius="${wheel_r}"/></geometry></collision>
+      <inertial><mass value="0.3"/>
+        <inertia ixx="0.0002" iyy="0.0004" izz="0.0002" ixy="0" ixz="0" iyz="0"/></inertial>
+    </link>
+    <joint name="${side}_wheel_joint" type="continuous">
+      <parent link="base_link"/><child link="${side}_wheel"/>
+      <origin xyz="0 ${y} -0.02"/><axis xyz="0 1 0"/>
+    </joint>
+  </xacro:macro>
+  <xacro:wheel side="left" y="${wheel_sep/2}"/>
+  <xacro:wheel side="right" y="${-wheel_sep/2}"/>
+
+  <link name="caster">
+    <visual><geometry><sphere radius="0.03"/></geometry></visual>
+    <collision><geometry><sphere radius="0.03"/></geometry></collision>
+    <inertial><mass value="0.1"/><inertia ixx="1e-5" iyy="1e-5" izz="1e-5" ixy="0" ixz="0" iyz="0"/></inertial>
+  </link>
+  <joint name="caster_joint" type="fixed">
+    <parent link="base_link"/><child link="caster"/><origin xyz="${body_x - 0.12} 0 -0.04"/>
+  </joint>
+  <gazebo reference="caster"><mu1>0.0</mu1><mu2>0.0</mu2></gazebo>
+
+  <!-- IMU on top, above the axle (only its yaw rate is used, and that's the same anywhere on the body) -->
+  <link name="imu_link">
+    <visual><geometry><box size="0.03 0.03 0.01"/></geometry>
+      <material name="orange"><color rgba="1.0 0.5 0.1 1"/></material></visual>
+    <inertial><mass value="0.01"/><inertia ixx="1e-7" iyy="1e-7" izz="1e-7" ixy="0" ixz="0" iyz="0"/></inertial>
+  </link>
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/><child link="imu_link"/><origin xyz="0 0 0.045"/>
+  </joint>
+
+  <xacro:macro name="axis_noise" params="axis std bias">
+    <xacro:element xacro:name="${axis}"><noise type="gaussian"><mean>0</mean><stddev>${std}</stddev>
+      <bias_mean>${bias}</bias_mean><bias_stddev>0.0001</bias_stddev></noise></xacro:element>
+  </xacro:macro>
+  <gazebo reference="imu_link">
+    <sensor name="imu_sensor" type="imu">
+      <always_on>1</always_on>
+      <update_rate>100</update_rate>
+      <topic>imu</topic>
+      <ignition_frame_id>imu_link</ignition_frame_id>
+      <imu>
+        <angular_velocity>
+          <xacro:axis_noise axis="x" std="${gyro_std}" bias="${gyro_bias}"/>
+          <xacro:axis_noise axis="y" std="${gyro_std}" bias="${gyro_bias}"/>
+          <xacro:axis_noise axis="z" std="${gyro_std}" bias="${gyro_bias}"/>
+        </angular_velocity>
+        <linear_acceleration>
+          <xacro:axis_noise axis="x" std="${acc_std}" bias="0.01"/>
+          <xacro:axis_noise axis="y" std="${acc_std}" bias="0.01"/>
+          <xacro:axis_noise axis="z" std="${acc_std}" bias="0.01"/>
+        </linear_acceleration>
+      </imu>
+    </sensor>
+  </gazebo>
+
+  <gazebo>
+    <!-- Moves the robot. Its own odometry and TF go to topics nobody listens to: the wheel
+         odometry I compare is computed from encoder ticks in wheel_odometry_node instead. -->
+    <plugin filename="ignition-gazebo-diff-drive-system" name="ignition::gazebo::systems::DiffDrive">
+      <left_joint>left_wheel_joint</left_joint>
+      <right_joint>right_wheel_joint</right_joint>
+      <wheel_separation>${wheel_sep}</wheel_separation>
+      <wheel_radius>${wheel_r}</wheel_radius>
+      <topic>cmd_vel</topic>
+      <odom_topic>diff_drive/odom_unused</odom_topic>
+      <tf_topic>diff_drive/tf_unused</tf_topic>
+      <max_linear_acceleration>1.0</max_linear_acceleration>
+      <max_angular_acceleration>3.0</max_angular_acceleration>
+    </plugin>
+    <!-- Wheel angles = the encoders -->
+    <plugin filename="ignition-gazebo-joint-state-publisher-system"
+            name="ignition::gazebo::systems::JointStatePublisher">
+      <topic>joint_states</topic>
+    </plugin>
+    <!-- Ground truth: the robot's real pose in the world, only used for scoring and steering -->
+    <plugin filename="ignition-gazebo-odometry-publisher-system"
+            name="ignition::gazebo::systems::OdometryPublisher">
+      <odom_frame>world</odom_frame>
+      <robot_base_frame>base_link</robot_base_frame>
+      <odom_topic>ground_truth</odom_topic>
+      <tf_topic>ground_truth/tf_unused</tf_topic>
+      <odom_publish_frequency>50</odom_publish_frequency>
+      <dimensions>2</dimensions>
+    </plugin>
+  </gazebo>
+</robot>
