@@ -1,0 +1,28 @@
+[INFO] [launch]: All log files can be found below /home/shanmukh/.ros/log/2026-10-24-12-51-31-307045-DESKTOP-FHS3URB-1132
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [ign gazebo-1]: process started with pid [1135]
+[INFO] [robot_state_publisher-2]: process started with pid [1137]
+[INFO] [create-3]: process started with pid [1140]
+[INFO] [parameter_bridge-4]: process started with pid [1142]
+[create-3] [INFO] [1792826491.725111103] [ros_gz_sim]: Requesting list of world names.
+[robot_state_publisher-2] [WARN] [1792826491.748148452] [kdl_parser]: The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+[robot_state_publisher-2] [INFO] [1792826491.748251593] [robot_state_publisher]: got segment base_link
+[robot_state_publisher-2] [INFO] [1792826491.748386798] [robot_state_publisher]: got segment caster
+[robot_state_publisher-2] [INFO] [1792826491.748403423] [robot_state_publisher]: got segment imu_link
+[robot_state_publisher-2] [INFO] [1792826491.748406641] [robot_state_publisher]: got segment left_wheel
+[robot_state_publisher-2] [INFO] [1792826491.748409278] [robot_state_publisher]: got segment right_wheel
+[parameter_bridge-4] [INFO] [1792826491.761270527] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/clock (ignition.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792826491.763011327] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/cmd_vel (geometry_msgs/msg/Twist) -> /cmd_vel (ignition.msgs.Twist)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792826491.764470991] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/joint_states (ignition.msgs.Model) -> /joint_states (sensor_msgs/msg/JointState)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792826491.765533866] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/imu (ignition.msgs.IMU) -> /imu (sensor_msgs/msg/Imu)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792826491.766138094] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/ground_truth (ignition.msgs.Odometry) -> /ground_truth (nav_msgs/msg/Odometry)] (Lazy 0)
+[create-3] [INFO] [1792826492.053644609] [ros_gz_sim]: Waiting messages on topic [robot_description].
+[create-3] [INFO] [1792826492.068263278] [ros_gz_sim]: Requested creation of entity.
+[create-3] [INFO] [1792826492.068361662] [ros_gz_sim]: OK creation of entity.
+[INFO] [create-3]: process has finished cleanly [pid 1140]
+[parameter_bridge-4] [INFO] [1792826510.176496272] [ros_gz_bridge]: Passing message from ROS geometry_msgs/msg/Twist to Gazebo gz.msgs.Twist (showing msg only once per type)
+[ERROR] [ign gazebo-1]: process has died [pid 1135, exit code -15, cmd 'ruby /usr/bin/ign gazebo -s -r /home/shanmukh/fusion_ws/install/ekf_fusion/share/ekf_fusion/worlds/slippery.sdf --force-version 6'].
+[parameter_bridge-4] [INFO] [1792826700.279041245] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[robot_state_publisher-2] [INFO] [1792826700.284395252] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[INFO] [parameter_bridge-4]: process has finished cleanly [pid 1142]
+[INFO] [robot_state_publisher-2]: process has finished cleanly [pid 1137]

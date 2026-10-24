@@ -1,0 +1,34 @@
+[INFO] [launch]: All log files can be found below /home/shanmukh/.ros/log/2026-10-24-12-37-49-655334-DESKTOP-FHS3URB-1189
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [wheel_odometry_node-1]: process started with pid [1190]
+[INFO] [imu_relay_node-2]: process started with pid [1192]
+[INFO] [ekf_node-3]: process started with pid [1194]
+[INFO] [ekf_node-4]: process started with pid [1196]
+[INFO] [route_driver_node-5]: process started with pid [1198]
+[INFO] [logger_node-6]: process started with pid [1200]
+[logger_node-6] [INFO] [1792825670.142650540] [fusion_logger]: logging to /home/shanmukh/fusion_runs/slippery_exact_calib.csv
+[route_driver_node-5] [INFO] [1792825670.240590198] [route_driver]: all estimators up, starting in 3 s
+[route_driver_node-5] [INFO] [1792825691.898150653] [route_driver]: route 10% done
+[route_driver_node-5] [INFO] [1792825710.146629594] [route_driver]: route 20% done
+[route_driver_node-5] [INFO] [1792825729.304545872] [route_driver]: route 30% done
+[route_driver_node-5] [INFO] [1792825747.563939435] [route_driver]: route 40% done
+[route_driver_node-5] [INFO] [1792825766.239287289] [route_driver]: route 50% done
+[ekf_node-3] Failed to meet update rate! Took 0.025000000000000001388seconds. Try decreasing the rate, limiting sensor output frequency, or limiting the number of sensors.
+[route_driver_node-5] [INFO] [1792825785.763097245] [route_driver]: route 60% done
+[route_driver_node-5] [INFO] [1792825804.730922267] [route_driver]: route 70% done
+[route_driver_node-5] [INFO] [1792825823.012120906] [route_driver]: route 80% done
+[route_driver_node-5] [INFO] [1792825841.594719868] [route_driver]: route 90% done
+[logger_node-6] [INFO] [1792825859.785776774] [fusion_logger]: route done after 186.7 s
+[INFO] [logger_node-6]: process has finished cleanly [pid 1200]
+[INFO] [route_driver_node-5]: sending signal 'SIGINT' to process[route_driver_node-5]
+[INFO] [ekf_node-4]: sending signal 'SIGINT' to process[ekf_node-4]
+[INFO] [ekf_node-3]: sending signal 'SIGINT' to process[ekf_node-3]
+[INFO] [imu_relay_node-2]: sending signal 'SIGINT' to process[imu_relay_node-2]
+[INFO] [wheel_odometry_node-1]: sending signal 'SIGINT' to process[wheel_odometry_node-1]
+[ekf_node-3] [INFO] [1792825860.275400955] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ekf_node-4] [INFO] [1792825860.274719276] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[INFO] [ekf_node-4]: process has finished cleanly [pid 1196]
+[INFO] [ekf_node-3]: process has finished cleanly [pid 1194]
+[INFO] [route_driver_node-5]: process has finished cleanly [pid 1198]
+[INFO] [imu_relay_node-2]: process has finished cleanly [pid 1192]
+[INFO] [wheel_odometry_node-1]: process has finished cleanly [pid 1190]

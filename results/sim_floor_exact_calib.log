@@ -1,0 +1,28 @@
+[INFO] [launch]: All log files can be found below /home/shanmukh/.ros/log/2026-10-24-13-08-49-143239-DESKTOP-FHS3URB-629
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [ign gazebo-1]: process started with pid [632]
+[INFO] [robot_state_publisher-2]: process started with pid [634]
+[INFO] [create-3]: process started with pid [637]
+[INFO] [parameter_bridge-4]: process started with pid [639]
+[parameter_bridge-4] [INFO] [1792827537.308951916] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/clock (ignition.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[create-3] [INFO] [1792827537.309581577] [ros_gz_sim]: Requesting list of world names.
+[parameter_bridge-4] [INFO] [1792827537.325260671] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/cmd_vel (geometry_msgs/msg/Twist) -> /cmd_vel (ignition.msgs.Twist)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792827537.378306117] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/joint_states (ignition.msgs.Model) -> /joint_states (sensor_msgs/msg/JointState)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792827537.515461089] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/imu (ignition.msgs.IMU) -> /imu (sensor_msgs/msg/Imu)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792827537.517211298] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/ground_truth (ignition.msgs.Odometry) -> /ground_truth (nav_msgs/msg/Odometry)] (Lazy 0)
+[robot_state_publisher-2] [WARN] [1792827537.694921223] [kdl_parser]: The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+[robot_state_publisher-2] [INFO] [1792827537.695043441] [robot_state_publisher]: got segment base_link
+[robot_state_publisher-2] [INFO] [1792827537.695129751] [robot_state_publisher]: got segment caster
+[robot_state_publisher-2] [INFO] [1792827537.695138032] [robot_state_publisher]: got segment imu_link
+[robot_state_publisher-2] [INFO] [1792827537.695141547] [robot_state_publisher]: got segment left_wheel
+[robot_state_publisher-2] [INFO] [1792827537.695144896] [robot_state_publisher]: got segment right_wheel
+[create-3] [INFO] [1792827542.310168439] [ros_gz_sim]: Requesting list of world names.
+[create-3] [INFO] [1792827544.453001003] [ros_gz_sim]: Waiting messages on topic [robot_description].
+[create-3] [INFO] [1792827544.469202123] [ros_gz_sim]: Requested creation of entity.
+[create-3] [INFO] [1792827544.469404589] [ros_gz_sim]: OK creation of entity.
+[INFO] [create-3]: process has finished cleanly [pid 637]
+[parameter_bridge-4] [INFO] [1792827548.673199148] [ros_gz_bridge]: Passing message from ROS geometry_msgs/msg/Twist to Gazebo gz.msgs.Twist (showing msg only once per type)
+[parameter_bridge-4] [INFO] [1792827736.045869911] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ERROR] [ign gazebo-1]: process has died [pid 632, exit code -15, cmd 'ruby /usr/bin/ign gazebo -s -r /home/shanmukh/fusion_ws/install/ekf_fusion/share/ekf_fusion/worlds/floor.sdf --force-version 6'].
+[robot_state_publisher-2] [INFO] [1792827736.052725947] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[INFO] [robot_state_publisher-2]: process has finished cleanly [pid 634]

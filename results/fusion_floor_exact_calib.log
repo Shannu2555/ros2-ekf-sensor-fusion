@@ -1,0 +1,33 @@
+[INFO] [launch]: All log files can be found below /home/shanmukh/.ros/log/2026-10-24-13-08-59-567824-DESKTOP-FHS3URB-684
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [wheel_odometry_node-1]: process started with pid [685]
+[INFO] [imu_relay_node-2]: process started with pid [687]
+[INFO] [ekf_node-3]: process started with pid [689]
+[INFO] [ekf_node-4]: process started with pid [691]
+[INFO] [route_driver_node-5]: process started with pid [693]
+[INFO] [logger_node-6]: process started with pid [695]
+[logger_node-6] [INFO] [1792827545.333630452] [fusion_logger]: logging to /home/shanmukh/fusion_runs/floor_exact_calib.csv
+[route_driver_node-5] [INFO] [1792827545.683899929] [route_driver]: all estimators up, starting in 3 s
+[route_driver_node-5] [INFO] [1792827567.085520638] [route_driver]: route 10% done
+[route_driver_node-5] [INFO] [1792827585.285226104] [route_driver]: route 20% done
+[route_driver_node-5] [INFO] [1792827603.538088845] [route_driver]: route 30% done
+[route_driver_node-5] [INFO] [1792827621.747058917] [route_driver]: route 40% done
+[route_driver_node-5] [INFO] [1792827639.949722065] [route_driver]: route 50% done
+[route_driver_node-5] [INFO] [1792827658.204908523] [route_driver]: route 60% done
+[route_driver_node-5] [INFO] [1792827676.410042971] [route_driver]: route 70% done
+[route_driver_node-5] [INFO] [1792827694.613918909] [route_driver]: route 80% done
+[route_driver_node-5] [INFO] [1792827712.866489372] [route_driver]: route 90% done
+[logger_node-6] [INFO] [1792827731.157797456] [fusion_logger]: route done after 183.8 s
+[INFO] [logger_node-6]: process has finished cleanly [pid 695]
+[INFO] [route_driver_node-5]: sending signal 'SIGINT' to process[route_driver_node-5]
+[INFO] [ekf_node-4]: sending signal 'SIGINT' to process[ekf_node-4]
+[INFO] [ekf_node-3]: sending signal 'SIGINT' to process[ekf_node-3]
+[INFO] [imu_relay_node-2]: sending signal 'SIGINT' to process[imu_relay_node-2]
+[INFO] [wheel_odometry_node-1]: sending signal 'SIGINT' to process[wheel_odometry_node-1]
+[ekf_node-3] [INFO] [1792827732.136449255] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ekf_node-4] [INFO] [1792827732.136455180] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[INFO] [ekf_node-4]: process has finished cleanly [pid 691]
+[INFO] [ekf_node-3]: process has finished cleanly [pid 689]
+[INFO] [imu_relay_node-2]: process has finished cleanly [pid 687]
+[INFO] [wheel_odometry_node-1]: process has finished cleanly [pid 685]
+[INFO] [route_driver_node-5]: process has finished cleanly [pid 693]

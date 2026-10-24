@@ -1,0 +1,41 @@
+[INFO] [launch]: All log files can be found below /home/shanmukh/.ros/log/2026-10-24-12-44-41-442261-DESKTOP-FHS3URB-691
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [wheel_odometry_node-1]: process started with pid [692]
+[INFO] [imu_relay_node-2]: process started with pid [694]
+[INFO] [ekf_node-3]: process started with pid [696]
+[INFO] [ekf_node-4]: process started with pid [698]
+[INFO] [route_driver_node-5]: process started with pid [700]
+[INFO] [logger_node-6]: process started with pid [702]
+[logger_node-6] [INFO] [1792826087.363889167] [fusion_logger]: logging to /home/shanmukh/fusion_runs/floor.csv
+[route_driver_node-5] [INFO] [1792826087.408011814] [route_driver]: all estimators up, starting in 3 s
+[route_driver_node-5] [INFO] [1792826108.814969706] [route_driver]: route 10% done
+[route_driver_node-5] [INFO] [1792826127.024364136] [route_driver]: route 20% done
+[route_driver_node-5] [INFO] [1792826145.276722526] [route_driver]: route 30% done
+[route_driver_node-5] [INFO] [1792826163.479093045] [route_driver]: route 40% done
+[route_driver_node-5] [INFO] [1792826181.684130459] [route_driver]: route 50% done
+[route_driver_node-5] [INFO] [1792826199.960963474] [route_driver]: route 60% done
+[route_driver_node-5] [INFO] [1792826218.228631492] [route_driver]: route 70% done
+[route_driver_node-5] [INFO] [1792826236.599435851] [route_driver]: route 80% done
+[route_driver_node-5] [INFO] [1792826255.195034460] [route_driver]: route 90% done
+[logger_node-6] [INFO] [1792826273.416708386] [fusion_logger]: route done after 185.3 s
+[INFO] [logger_node-6]: process has finished cleanly [pid 702]
+[INFO] [route_driver_node-5]: sending signal 'SIGINT' to process[route_driver_node-5]
+[INFO] [ekf_node-4]: sending signal 'SIGINT' to process[ekf_node-4]
+[INFO] [ekf_node-3]: sending signal 'SIGINT' to process[ekf_node-3]
+[INFO] [imu_relay_node-2]: sending signal 'SIGINT' to process[imu_relay_node-2]
+[INFO] [wheel_odometry_node-1]: sending signal 'SIGINT' to process[wheel_odometry_node-1]
+[ekf_node-4] [INFO] [1792826273.621008917] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ekf_node-3] [INFO] [1792826273.621674440] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[INFO] [ekf_node-4]: process has finished cleanly [pid 698]
+[INFO] [ekf_node-3]: process has finished cleanly [pid 696]
+[INFO] [imu_relay_node-2]: process has finished cleanly [pid 694]
+[INFO] [wheel_odometry_node-1]: process has finished cleanly [pid 692]
+[route_driver_node-5] Traceback (most recent call last):
+[route_driver_node-5]   File "/home/shanmukh/fusion_ws/install/ekf_fusion/lib/ekf_fusion/route_driver_node", line 33, in <module>
+[route_driver_node-5]     sys.exit(load_entry_point('ekf-fusion', 'console_scripts', 'route_driver_node')())
+[route_driver_node-5]   File "/home/shanmukh/fusion_ws/build/ekf_fusion/ekf_fusion/route_driver_node.py", line 79, in main
+[route_driver_node-5]     n.cmd_pub.publish(Twist())
+[route_driver_node-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/publisher.py", line 70, in publish
+[route_driver_node-5]     self.__publisher.publish(msg)
+[route_driver_node-5] rclpy._rclpy_pybind11.RCLError: Failed to publish: publisher's context is invalid, at ./src/rcl/publisher.c:389
+[ERROR] [route_driver_node-5]: process has died [pid 700, exit code 1, cmd '/home/shanmukh/fusion_ws/install/ekf_fusion/lib/ekf_fusion/route_driver_node --ros-args -r __node:=route_driver --params-file /home/shanmukh/fusion_ws/install/ekf_fusion/share/ekf_fusion/config/fusion.yaml'].
